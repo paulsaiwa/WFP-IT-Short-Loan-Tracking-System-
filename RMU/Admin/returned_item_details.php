@@ -26,7 +26,7 @@
 
             <br>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Item" rel="popover" data-original-title="Add Item?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -34,7 +34,7 @@
 
                 });
             </script>
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="itemNotReturned.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Not returned Item</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_profiles.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Not returned Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -43,14 +43,7 @@
                 });
             </script>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="returned_item_details.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
-            <script type="text/javascript">
-                jQuery(document).ready(function() {
-                    $('#add').popover('show')
-                    $('#add').popover('hide')
-
-                });
-            </script>
+            
             <a href="user_account.php" class="btn btn-large"><i class="icon-user icon-large"></i>&nbsp;View User Account</a>
 
               
@@ -80,9 +73,8 @@
             <table cellpadding="0" cellspacing="0" border="0" class="display" id="log" class="jtable">
                 <thead>
                     <tr>
-                        <th>Returned by</th>
+                       
                         <th>Returned Date</th>
-                        <th>Received by</th>
                         <th>Item Condition</th>
                         <th>Additional details</th>
                         <th>Item status</th>
@@ -91,13 +83,11 @@
                 </thead>
                 <tbody>
 
-                    <?php $emp_query=mysqli_query($conn,"select * from returned_by, employee, user WHERE user.User_id=returned_by.witness_id AND employee.employeeID=returned_by.employeeID");
+                    <?php $emp_query=mysqli_query($conn,"select * from returned_by");
                         while($row=mysqli_fetch_array($emp_query)){ $id=$row['returned_id']; ?>
 
                         <tr class="del<?php echo $id ?>" style="text-align: center;">
-                            <td><?php echo $row['fname']; ?></td>
                             <td><?php echo date('D d M', $row['date_returned']) ?></td> 
-                            <td><?php echo $row['fullname']; ?></td>
                             <td><?php echo $row['item_condition']; ?></td>
                             <td><?php echo $row['comment']; ?></td>
                             <td><?php echo $row['returned']; ?></td>
@@ -113,16 +103,12 @@
                                 </script>
 
 
-                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Employee" rel="popover" data-original-title="Edit?"  href="edit_emp.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
+                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Employee" rel="popover" data-original-title="Edit?"  href="edit_returned_item.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
                                 <a class="btn btn-danger1" data-toggle="modal" href="#d<?php echo $id; ?>">  <i class="icon-trash icon-large"></i>&nbsp;Delete</a>
                                 <?php
                                     include('button_returned_details.php');
                                 ?>
                                 
-                                <a class="btn "  data-toggle="modal" href="#a<?php echo $id; ?>" ><i class="icon-plus icon-large"></i>&nbsp;Status</a>
-                                <?php
-                                    include('button_add.php');
-                                ?>
                             </td>
                         </tr>
                         <?php }?>

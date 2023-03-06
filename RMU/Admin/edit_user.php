@@ -53,7 +53,7 @@
                             <div class="control-group">
                                 <label class="control-label" for="input01">UserName:</label>
                                 <div class="controls">
-                                    <input type="text" name="username" class="input-xlarge" id="input01"  value="<?php echo $row['UserName']; ?>">
+                                    <input type="text" name="username" class="input-xlarge" id="input01"  value="<?php echo $row['UserName']; ?>" required autocomplete="off" autofocus="on" minlength="4" pattern="[a-zA-Z]+.[a-zA-Z].+@wfp\.org" title="Enter firstname and lastname">
 
                                 </div>
                             </div>
@@ -67,26 +67,17 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label"  for="input01">FirstName:</label>
+                                <label class="control-label"  for="input01">Name:</label>
                                 <div class="controls">
-                                    <input type="text"  name="firstname" class="input-xlarge" id="input01"  value="<?php echo $row['FirstName']; ?>">
+                                    <input type="text"  name="fullname_user" class="input-xlarge" id="input01"  value="<?php echo $row['fullname_user']; ?>">
 
                                 </div>
                             </div>
-
-                            <div class="control-group">
-                                <label class="control-label"  for="input01">LastName:</label>
-                                <div class="controls">
-                                    <input type="text" name="lastname" class="input-xlarge" id="input01"  value="<?php echo $row['LastName']; ?>">
-
-                                </div>
-                            </div>
-
 
                             <div class="control-group">
                                 <label class="control-label" for="input01">User Type:</label>
                                 <div class="controls">
-                                    <select class="span2" name="type">
+                                    <select class="span2" name="User_Type">
                                         <option><?php
                                             echo $row['User_Type'];
                                         ?></option>
@@ -96,6 +87,23 @@
 
                                 </div>
                             </div>
+
+                             <div class="control-group">
+                                <label class="control-label" for="input01">Status:</label>
+                                <div class="controls">
+                                    <select class="span2" name="status">
+                                        <option><?php
+                                            echo $row['status'];
+                                        ?></option>
+                                        <option>On</option>
+                                        <option>Off</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="date_registered" class="input-xlarge" id="input01" value="<?php echo $row['date_registered']; ?>">
+                            <input type="hidden" name="registered_by" class="input-xlarge" id="input01" value="<?php echo $row['registered_by']; ?>">
 
                             <div class="control-group">
 
@@ -114,17 +122,21 @@
                 if (isset($_POST['save'])){
                     $indexNo=$_POST['index_no'];
                     $username=$_POST['username'];
-                    $password=$_POST['password'];
-                    $firstname=$_POST['firstname'];
-                    $lastname=$_POST['lastname'];
-                    $type=$_POST['type'];
+                    $password=md5($_POST['password']);
+                    $firstname=$_POST['fullname_user'];
+                    $status=$_POST['status'];
+                    $date2=$_POST['date_registered'];
+                    $registered_by=$_POST['registered_by'];
+                    $type=$_POST['User_Type'];
 
                     mysqli_query($conn,"update user set UserName='$username',
                         index_no='$indexNo',
                         Password='$password',
-                        FirstName='$firstname',
-                        LastName='$lastname',
-                        User_Type='$type'
+                        fullname_user='$firstname',
+                        User_Type='$type',
+                        date_registered='$date2',
+                        registered_by='$registered_by',
+                        status='$status'
                         where User_id='$get_id' ")or die(mysqli_error());
 
             ?>

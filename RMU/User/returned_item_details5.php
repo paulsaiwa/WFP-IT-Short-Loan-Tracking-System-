@@ -17,7 +17,7 @@
 
 
         <div class="alert alert-info">
-            <h2>Items details not returned</h2>
+            <h2>Returned Items details</h2>
         </div>
 
         <hr>
@@ -26,7 +26,7 @@
 
             <br>
 
-             <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Item" rel="popover" data-original-title="Add Item?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -43,7 +43,7 @@
                 });
             </script>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="returned_item_details.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click to see returned items" rel="popover" data-original-title="See returned Item?" href="home_user.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -51,7 +51,8 @@
 
                 });
             </script>
-            <a href="user_account.php" class="btn btn-large"><i class="icon-user icon-large"></i>&nbsp;View User Account</a>
+            
+
               
         </div>
 
@@ -79,37 +80,27 @@
             <table cellpadding="0" cellspacing="0" border="0" class="display" id="log" class="jtable">
                 <thead>
                     <tr>
-                        <th>Borrowed Date</th>
-                        <th>Index No/ External</th>
-                        <th>Staff name</th>
-                        <th>Phone</th>
-                        <th>Item Description</th>
-                        <th>Tag / Inventory Number</th>
-                        <th>Serial Number</th>
-                        <th>Issued by</th>
+                       
+                        <th>Returned Date</th>
+                        <th>Item Condition</th>
+                        <th>Additional details</th>
                         <th>Item status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    <?php $emp_query=mysqli_query($conn,"select * from user, employee WHERE returned_by ='Not yet returned' AND employee.admin_id=user.User_id");
-                        while($row=mysqli_fetch_array($emp_query)){ $id=$row['employeeID']; ?>
+                    <?php $emp_query=mysqli_query($conn,"select * from returned_by, user, employee WHERE user.User_id=employee.admin_id");
+                        while($row=mysqli_fetch_array($emp_query)){ $id=$row['returned_id']; ?>
 
                         <tr class="del<?php echo $id ?>" style="text-align: center;">
-                            <td><?php echo date('D d M', $row['date_posted']) ?></td> 
-                            <td><?php echo $row['index_No']; ?></td>
-                            <td><?php echo $row['fname']; ?></td>
-                            <td><?php  echo $row['phone']?></td>
-                            <td><?php echo $row['item_description'] ?></td>
-                            <td><?php echo $row['tagNo'] ?></td>
-                            <td><?php echo $row['serial_no'] ?></td>
-                            <td><?php echo $row['fullname_user'] ?></td>
-                            <td><?php echo $row['returned_by'] ?></td>
-                            
-                            
+                            <td><?php echo date('D d M', $row['date_returned']) ?></td> 
+                            <td><?php echo $row['item_condition']; ?></td>
+                            <td><?php echo $row['comment']; ?></td>
+                            <td><?php echo $row['returned']; ?></td>
+                                        
 
-                            <td align="center" width="200">      
+                            <td align="center" width="320">      
                                 <script type="text/javascript">
                                     jQuery(document).ready(function() {
                                         $('#p<?php echo $id; ?>').popover('show')
@@ -119,10 +110,8 @@
                                 </script>
 
 
-                               <a class="btn "  data-toggle="modal" href="#a<?php echo $id; ?>"><i class="icon-plus icon-large" ></i>&nbsp;Return Item</a>
-                                <?php
-                                    include('button_add.php');
-                                ?>
+                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Employee" rel="popover" data-original-title="Edit?"  href="edit_returned_item.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
+                                                            
                             </td>
                         </tr>
                         <?php }?>

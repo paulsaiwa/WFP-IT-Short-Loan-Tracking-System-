@@ -130,6 +130,7 @@
     <!--datepicker -->
     <link href="../css/datepicker/ui.datepicker.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="../js/datepicker/ui.datepicker.js"></script>
+    <script type="text/javascript" src="../js/stopusers.js"></script>
     <script type="text/javascript" charset="utf-8">
         jQuery(function($){
             $(".Birthdate").datepicker();

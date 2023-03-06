@@ -55,6 +55,13 @@
 
                             </div>     
                         </div>
+                        <div class="control-group">
+                            <label class="control-label" for="input01">Serial No:</label>
+                            <div class="controls">
+                                <input type="text" class="input-xlarge" value="<?php echo  $row['serial_no']; ?>"  name="serial_no" id="input01" autocomplete="off">
+
+                            </div>     
+                        </div>
 
                         <div class="control-group">
                             

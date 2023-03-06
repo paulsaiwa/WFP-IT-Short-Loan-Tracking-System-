@@ -19,15 +19,15 @@
             <div class="alert alert-info">
                 <h2>Edit 
                     <?php
-                        $name_query=mysqli_query($conn,"select * from employee ,user  where employee.employeeID='$get_id'")or die(mysqli_error());
+                        $name_query=mysqli_query($conn,"select * from returned_by where employeeID='$get_id'")or die(mysqli_error());
                         $name_row=mysqli_fetch_array($name_query);
-                        echo $name_row['fname'];
+                        
                     ?>
                     Information
                 </h2>  
 
                 <div class="pull-right">
-                    <a class="btn btn-success btn-large"  data-original-title="Back" href="itemNotReturned.php">  <i class="icon-arrow-left icon-large"></i>&nbsp;Back</a>
+                    <a class="btn btn-success btn-large"  data-original-title="Add Employee?" href="returned_item_details.php">  <i class="icon-arrow-left icon-large"></i>&nbsp;Back</a>
                     <script type="text/javascript">
                         jQuery(document).ready(function() {
                             $('#add').popover('show')
@@ -47,7 +47,7 @@
 
 
             <ul class="nav nav-tabs" id="myTab">
-                <li class="active"><a href="#home"><font color="#5bc0de">Personal Info</font></a></li>
+                <li class="active"><a href="#home"><font color="#5bc0de">Returned Item information</font></a></li>
 
             </ul>
             <form method="post" enctype="multipart/form-data">
@@ -57,7 +57,7 @@
 
                         <div class="hero-unit">
                             <?php
-                                include('add_edit_info.php');  
+                                include('add_edit_returned_item.php');  
                             ?>
                         </div>
 
@@ -119,25 +119,23 @@
 <?php
 
     if (isset($_POST['save'])){
-        $indexNo=$_POST['index_No'];
-        $fname=$_POST['fname'];
-        $phone=$_POST['phone'];
-        $item_description=$_POST['item_description'];
-        $tagNo=$_POST['tagNo'];
-        $returned="Not yet returned";
+        $returned_id=$_POST['returned_id'];
+        $item_condition=$_POST['item_condition'];
+        $comment=$_POST['comment'];
+        $employeeID=$_POST['employeeID'];
+        $witness=$_POST['witness_id'];
         $issueBy=$_POST['admin_id'];
-        $date=$_POST['date_posted'];
-        $serial_no=$_POST['serial_no'];
+        $date=time();
+        $returned="Item returned";
         
-        mysqli_query($conn,"update employee set index_No='$indexNo',serial_no='$serial_no', fname='$fname',phone='$phone',
-            item_description='$item_description',tagNo='$tagNo',returned_by='$returned',
-            admin_id='$issueBy',date_posted='$date' where employeeID='$get_id'")or die(mysqli_error());
-        //header('location:emp_profiles.php');
+        mysqli_query($conn,"update returned_by set returned_id='$returned_id',item_condition='$item_condition', comment='$comment',employeeID='$employeeID',
+            witness_id='$witness',date_returned='$date',returned='$returned' where returned_id='$get_id'")or die(mysqli_error());
+        header('location:emp_profiles.php');
 ?>
 
 <script>
                  function pageRedirect() {
-                    window.location.replace("itemNotReturned.php");
+                    window.location.replace("returned_item_details.php");
     }      
                         setTimeout("pageRedirect()", 1000);
                 </script>

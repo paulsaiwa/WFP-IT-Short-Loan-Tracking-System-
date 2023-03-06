@@ -1,7 +1,6 @@
 <?php include('dbcon.php'); include('session.php');include('header.php'); 
     $get_id=$_GET['id'];
-        $edit_query=mysqli_query($conn,"select * from user where User_id='$id_session'")or die(mysqli_error());
-                                
+       
         
 ?>
 <body>
@@ -23,11 +22,16 @@
 
             <div class="alert alert-info">
                 <?php
-                    $leave_query=mysqli_query($conn,"select * from employee where employeeID='$get_id'")or die(mysqli_errno());
-                    $row=mysqli_fetch_array($leave_query);
-                    $member_id=$row['employeeID'];
+                 $edit_query=mysqli_query($conn,"select * from user where User_id='$id_session'")or die(mysqli_error());
+                    $row=mysqli_fetch_array($edit_query);
+                    $system_user=$row['fullname_user'];
+
+                            $leave_query=mysqli_query($conn,"select * from employee where employeeID='$get_id'")or die(mysqli_errno());
+                                $row=mysqli_fetch_array($leave_query);
+                                $member_id=$row['employeeID'];
                 ?>
                 <h2>Item returned by <?php echo $row['fname']; ?></h2>
+                
 
                 <div class="pull-right">
                 <a class="btn btn-success btn-large"  data-original-title="Add Employee?" href="emp_profiles.php">  <i class="icon-arrow-left icon-large"></i>&nbsp;Back</a>
@@ -110,7 +114,7 @@
             if (isset($_POST['save'])){
 
 
-                $admin_id=$id_session;
+                $admin_id=$system_user;
                 $emp_id=$get_id;
                 $comment=$_POST['comment'];
                 $item_condition=$_POST['item_condition'];

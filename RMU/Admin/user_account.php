@@ -35,7 +35,7 @@
              <br>
              <br>
           
-        
+                
             <table class="users-table">
 
 
@@ -44,29 +44,40 @@
                     <thead>
                         <tr>
                              <th>Index No</th>
-                            <th>UserName</th>
-                            <th>Password</th>
-                            <th>Name</th>
-                            <th>User Type</th>
+                             <th>UserName</th>
+                             <th>Name</th>
+                             <th>User Type</th>
+                             <th>Date of Register</th>
+                             <th>User status</th>
+                             <th>Valid user?</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        <?php $user_query=mysqli_query($conn,"select * from user");
+                        <?php $user_query=mysqli_query($conn,"select * from user where UserName!='default_user@wfp.org'");
                             while($row=mysqli_fetch_array($user_query)){ $id=$row['User_id']; ?>
 
                             <tr class="del<?php echo $id ?>" style="text-align: center;">
                                 <td><?php echo $row['index_no']; ?></td>
                                 <td><?php echo $row['UserName']; ?></td>
-                                <td><?php echo $row['Password']; ?></td>
-                                <td><?php echo $row['fullname']; ?></td>
+                                <td><?php echo $row['fullname_user'];?></td>
                                 <td><?php echo $row['User_Type'] ?></td>
+                                <td><?php echo date('D d M', $row['date_registered']) ?></td>
+                                <td><?php echo $row['status'] ?></td>
+
+                                <td>
+                                    <div class="">
+                                            <a href="update_status1.php<?php echo '?id='.$id; ?>"" class="btn red" data-dismiss="modal">No</a>
+                                            <a href="update_status.php<?php echo '?id='.$id; ?>" class="btn btn-primary">Yes</a>
+                                        </div>
+                                </td>
+
                                 <td width="160">
                                     <a class="btn btn-success" href="edit_user.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;	
 
                                     <a class="btn btn-danger1"  data-toggle="modal" href="#d<?php echo $id; ?>">  <i class="icon-trash icon-large"></i>&nbsp;Delete</a>
-
+                                    
                                     <div class="modal hide fade" id="d<?php echo $id; ?>">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal">?</button>

@@ -14,7 +14,11 @@
     <div class="" >
         <div id="element" class="hero-body">
 
-
+            <?php
+             $edit_query=mysqli_query($conn,"select * from user where User_id='$id_session'")or die(mysqli_error());
+                    //$row=mysqli_fetch_array($edit_query);
+                   // $user=$row['fullname_user'];
+            ?>
             <div class="alert alert-info">
                 <h2>Add User</h2>
             </div>
@@ -38,9 +42,9 @@
                     <form class="form-horizontal" method="post">
                         <fieldset>
                             <div class="control-group">
-                                <label class="control-label" for="input01">Useraame:</label>
+                                <label class="control-label" for="input01">Username:</label>
                                 <div class="controls">
-                                    <input type="text" name="username" class="input-xlarge" id="input01"  placeholder="UserName" required autocomplete="off" autofocus="on">
+                                    <input type="text" name="username" class="input-xlarge" id="input01"  placeholder="UserName" required autocomplete="off" autofocus="on" minlength="4" pattern="[a-zA-Z]+.[a-zA-Z].+@wfp\.org" title="Enter firstname and lastname">
 
                                 </div>
                             </div>
@@ -64,7 +68,7 @@
                             <div class="control-group">
                                 <label class="control-label"  for="input01">Name:</label>
                                 <div class="controls">
-                                    <input type="text"  name="fullname" class="input-xlarge" id="input01"  placeholder="Full name" required autocomplete="off" autofocus="on" required pattern="[a-zA-Z]+[ ][a-zA-Z]+" title="Enter firstname and lastname">
+                                    <input type="text"  name="fullname_user" class="input-xlarge" id="input01"  placeholder="Full name" required autocomplete="off" autofocus="on" required pattern="[a-zA-Z]+[ ][a-zA-Z]+" title="Enter firstname and lastname">
 
                                 </div>
                             </div>
@@ -76,6 +80,18 @@
                                         <option></option>
                                         <option>Admin</option>
                                         <option>User</option>
+                                    </select>
+
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="input01">User status:</label>
+                                <div class="controls">
+                                    <select class="span2" name="status" required autocomplete="off" autofocus="on" required>
+                                        <option></option>
+                                        <option>Activate</option>
+                                        <option>Deactivate</option>
                                     </select>
 
                                 </div>
@@ -99,14 +115,17 @@
 
                     $username=$_POST['username'];
                     $password=$_POST['password'];
+                    $pass =md5($password);
                     $indexNo=$_POST['index_no'];
-                    $firstname=$_POST['firstname'];
-                    $lastname=$_POST['lastname'];
+                    $fullname=$_POST['fullname_user'];
+                    $status=$_POST['status'];
                     $type=$_POST['type'];
+                    $authorise=$id_session;
+                    $date=time();
 
 
-                    mysqli_query($conn,"insert into user (UserName,Password,index_no, FirstName,LastName,User_Type)
-                        values ('$username','$password','$indexNo','$firstname','$lastname','$type')
+                    mysqli_query($conn,"insert into user (UserName,Password,index_no, fullname_user,User_Type,date_registered,registered_by,status)
+                        values ('$username','$pass','$indexNo','$fullname','$type','$date','$authorise','$status')
                         ") or die(mysqli_error()); 
                  ?>
                 <script>

@@ -9,8 +9,8 @@
             <h2>Add what?</h2>
         </div>
         <center>                           
-            <p><a href="add_returned.php<?php echo '?id='.$id; ?>" class="btn btn-large"><i class="icon-file icon-large"></i>&nbsp;Item borrowed by</a> </p>
-            <p><a href="add_service.php<?php echo '?id='.$id; ?>" class="btn btn-success btn-large"><i class="icon-file icon-large"></i>&nbsp;Item Returned by</a></p> 
+            <p><a href="add_returned.php<?php echo '?id='.$id; ?>" class="btn btn-large"><i class="icon-file icon-large"></i>&nbsp;Item to be returned</a> </p>
+            <p><a href="returned_item_details.php<?php echo '?id='.$id; ?>" class="btn btn-success btn-large"><i class="icon-file icon-large"></i>&nbsp;Item returned</a></p> 
         </center>
     </div>
     <div class="modal-footer">

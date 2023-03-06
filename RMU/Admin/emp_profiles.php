@@ -17,7 +17,7 @@
 
 
         <div class="alert alert-info">
-            <h2>Items details</h2>
+            <h2>Items not returned details</h2>
         </div>
 
         <hr>
@@ -26,7 +26,7 @@
 
             <br>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Item" rel="popover" data-original-title="Add Item?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -34,16 +34,8 @@
 
                 });
             </script>
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="itemNotReturned.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Not returned Item</a>
-            <script type="text/javascript">
-                jQuery(document).ready(function() {
-                    $('#add').popover('show')
-                    $('#add').popover('hide')
-
-                });
-            </script>
-
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="item_returned.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
+            
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Item" rel="popover" data-original-title="Add Item?" href="returned_item_details.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -118,7 +110,7 @@
                                 </script>
 
 
-                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Employee" rel="popover" data-original-title="Edit?"  href="edit_emp.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
+                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Item" rel="popover" data-original-title="Edit?"  href="edit_emp.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
                                 <a class="btn btn-danger1" data-toggle="modal" href="#d<?php echo $id; ?>">  <i class="icon-trash icon-large"></i>&nbsp;Delete</a>
                                 <?php
                                     include('button_delete.php');

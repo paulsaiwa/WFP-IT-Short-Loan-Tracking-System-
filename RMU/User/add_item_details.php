@@ -26,7 +26,7 @@
 
             <br>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Add Personnel</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add item" rel="popover" data-original-title="Add Item?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Add Personnel</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -35,7 +35,7 @@
                 });
             </script>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="item_returned.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;To return Item</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="item_returned.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Return Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -43,8 +43,6 @@
 
                 });
             </script>
-            <a href="user_account.php" class="btn btn-large"><i class="icon-user icon-large"></i>&nbsp;View User Account</a>
-
               
         </div>
 
@@ -111,10 +109,7 @@
 
 
                                 <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Employee" rel="popover" data-original-title="Edit?"  href="edit_emp.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
-                                <a class="btn btn-danger1" data-toggle="modal" href="#d<?php echo $id; ?>">  <i class="icon-trash icon-large"></i>&nbsp;Delete</a>
-                                <?php
-                                    include('button_delete.php');
-                                ?>
+                                
                                 
                                 <a class="btn "  data-toggle="modal" href="#a<?php echo $id; ?>" ><i class="icon-plus icon-large"></i>&nbsp;Status</a>
                                 <?php

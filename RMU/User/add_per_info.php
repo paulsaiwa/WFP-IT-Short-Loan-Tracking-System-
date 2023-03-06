@@ -17,7 +17,7 @@
                         <div class="control-group">
                             <label class="control-label" for="input01">Serial No:</label>
                             <div class="controls">
-                                <input type="text"  name="seria_no" class="input-xlarge" id="input01" placeholder="Serial No:" required onautocomplete="off" autocomplete="off" minlength="4" pattern="[A-Za-z0-9]+" title="no puctuation marks">
+                                <input type="text"  name="serial_no" class="input-xlarge" id="input01" placeholder="Serial No:" required onautocomplete="off" autocomplete="off" minlength="4" pattern="[A-Za-z0-9]+" title="no puctuation marks">
 
                             </div>     
                         </div>

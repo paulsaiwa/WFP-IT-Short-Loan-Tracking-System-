@@ -11,7 +11,12 @@ session_start();
 session_destroy();
 
 mysqli_query($conn,"INSERT INTO history (data,action,date,user)VALUES('$f $l', 'Logout', NOW(),'$type')")or die(mysqli_error());
+  
+session_start();  
 
+session_unset();   
+                      
+session_destroy();
 
 header('location:../index.php');
 

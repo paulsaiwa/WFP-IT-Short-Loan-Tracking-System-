@@ -26,7 +26,15 @@
 
             <br>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Add Personnel</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    $('#add').popover('show')
+                    $('#add').popover('hide')
+
+                });
+            </script>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="itemNotReturned.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Not returned Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -35,7 +43,7 @@
                 });
             </script>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="add_returned.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;To return Item</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="home_user.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -74,7 +82,7 @@
                     <tr>
                         <th>Borrowed Date</th>
                         <th>Index No/ External</th>
-                        <th>Serial No</th>
+                        <th>Seria No</th>
                         <th>Staff name</th>
                         <th>Phone</th>
                         <th>Item Description</th>
@@ -85,7 +93,7 @@
                 </thead>
                 <tbody>
 
-                    <?php $emp_query=mysqli_query($conn,"select * from employee where returned_by ='Not yet returned'");
+                    <?php $emp_query=mysqli_query($conn,"select * from employee, user where returned_by ='Not yet returned' AND user.User_id=employee.admin_id");
                         while($row=mysqli_fetch_array($emp_query)){ $id=$row['employeeID']; ?>
 
                         <tr class="del<?php echo $id ?>" style="text-align: center;">
@@ -110,10 +118,13 @@
                                 </script>
 
 
-                                <a class="btn "  data-toggle="modal" href="#a<?php echo $id; ?>" ><i class="icon-plus icon-large"></i>&nbsp;Add</a>
+                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Employee" rel="popover" data-original-title="Edit?"  href="edit_emp.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
+                                                                
+                                <a class="btn "  data-toggle="modal" href="#a<?php echo $id; ?>" ><i class="icon-plus icon-large"></i>&nbsp;Return Item</a>
                                 <?php
                                     include('button_add.php');
                                 ?>
+                            </td>
                         </tr>
                         <?php }?>
                 </tbody>

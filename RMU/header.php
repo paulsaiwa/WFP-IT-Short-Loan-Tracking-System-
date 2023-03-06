@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><title>PRMS</title>
+<head><title>WFP</title>
     <link href="img/dep2.jpg" rel="icon" type="image"> 
     <script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="screen">
@@ -51,7 +51,7 @@
 
 
     <script type="text/javascript" language="JavaScript">
-        <!-- Copyright 2002 Bontrager Connection, LLC
+        <!-- Vincent Saiwa, IT Operations Officer
 
         function getCalendarDate()
         {

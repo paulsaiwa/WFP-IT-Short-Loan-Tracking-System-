@@ -26,7 +26,7 @@
 
             <br>
 
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Add Personnel</a>
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Item" rel="popover" data-original-title="Add Item?" href="emp_add.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Register Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -34,8 +34,14 @@
 
                 });
             </script>
-            
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to see" rel="popover" data-original-title="Not returned?" href="itemNotReturned.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Not returned Item</a>
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    $('#add').popover('show')
+                    $('#add').popover('hide')
 
+                });
+            </script>
               
         </div>
 
@@ -64,37 +70,48 @@
                 <thead>
                     <tr>
                         <th>Borrowed Date</th>
-                        <th>Index No/ External</th>
-                        <th>Serial No</th>
                         <th>Staff name</th>
-                        <th>Phone</th>
                         <th>Item Description</th>
                         <th>Tag / Inventory Number</th>
+                        <th>Serial No</th>
                         <th>Issued by</th>
                         <th>Status</th>
                         <th>returned date</th>
                         <th>Received by</th>
+                        <th>See more...</th>
                         </tr>
                 </thead>
                 <tbody>
 
-                    <?php $emp_query=mysqli_query($conn,"select * from employee, user, returned_by where user.User_id=employee.admin_id AND employee.employeeID=returned_by.employeeID AND user.User_id=returned_by.witness_id ");
+                    <?php $emp_query=mysqli_query($conn,"select * from employee, user ,returned_by where user.User_id=employee.admin_id AND employee.employeeID=returned_by.employeeID  ");
                         while($row=mysqli_fetch_array($emp_query)){ $id=$row['employeeID']; ?>
+
 
                         <tr class="del<?php echo $id ?>" style="text-align: center;">
                             <td><?php echo date('D d M', $row['date_posted']) ?></td> 
-                            <td><?php echo $row['index_No']; ?></td>
-                            <td><?php echo $row['serial_no']; ?></td>
                             <td><?php echo $row['fname']; ?></td>
-                            <td><?php echo $row['phone']?></td>
                             <td><?php echo $row['item_description'] ?></td>
                             <td><?php echo $row['tagNo'] ?></td>
-                            <td><?php echo $row['fullname'] ?></td>
+                            <td><?php echo $row['serial_no'] ?></td>
+                            <td><?php echo $row['fullname_user'] ?></td>
                             <td><?php echo $row['returned'] ?></td>
                             <td><?php echo date('D d M', $row['date_returned']) ?></td>
-                            <td><?php echo $row['fullname'] ?></td>
+                            <td><?php echo $row['witness_id'] ?></td>
                             
-                            
+                            <td align="center" width="150">      
+                                <script type="text/javascript">
+                                    jQuery(document).ready(function() {
+                                        $('#p<?php echo $id; ?>').popover('show')
+                                        $('#p<?php echo $id; ?>').popover('hide')
+
+                                    });
+                                </script>
+
+
+                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to see more details" rel="popover" data-original-title="See more?"  href="more_details.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;..More</a>&nbsp;
+                                
+                                
+                                </td>
 
                             </tr>
                         <?php }?>

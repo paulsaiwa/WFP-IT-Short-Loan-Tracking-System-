@@ -8,9 +8,10 @@
         <div class="alert alert-info">
             <h2>Add what?</h2>
         </div>
-        <center>                           
-            <p><a href="add_returned.php<?php echo '?id='.$id; ?>" class="btn btn-large"><i class="icon-file icon-large"></i>&nbsp;Item borrowed by</a> </p>
-            <p><a href="add_service.php<?php echo '?id='.$id; ?>" class="btn btn-success btn-large"><i class="icon-file icon-large"></i>&nbsp;Item Returned by</a></p> 
+        <center>  
+                Make sure you check the condition of an Item                         
+            <p><a href="add_returned.php<?php echo '?id='.$id; ?>" class="btn btn-large"><i class="icon-file icon-large"></i>&nbsp;Proceed</a> </p>
+            
         </center>
     </div>
     <div class="modal-footer">

@@ -34,7 +34,9 @@
 
                 });
             </script>
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="itemNotReturned.php">  <i class="icon-plus-sign icon-large"></i>&nbsp;Not returned Item</a>
+           
+
+            <a class="btn btn-primary btn-large" id="add"  data-content="Click here" rel="popover" data-original-title="returned?" href="home_user.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
             <script type="text/javascript">
                 jQuery(document).ready(function() {
                     $('#add').popover('show')
@@ -42,16 +44,7 @@
 
                 });
             </script>
-
-            <a class="btn btn-primary btn-large" id="add"  data-content="Click here to Add Personnel" rel="popover" data-original-title="Add Personnel?" href="returned_item_details.php">  <i class="icon-plus-sign icon-large" ></i>&nbsp;Returned Item</a>
-            <script type="text/javascript">
-                jQuery(document).ready(function() {
-                    $('#add').popover('show')
-                    $('#add').popover('hide')
-
-                });
-            </script>
-            <a href="user_account.php" class="btn btn-large"><i class="icon-user icon-large"></i>&nbsp;View User Account</a>
+            
               
         </div>
 
@@ -86,14 +79,13 @@
                         <th>Item Description</th>
                         <th>Tag / Inventory Number</th>
                         <th>Serial Number</th>
-                        <th>Issued by</th>
                         <th>Item status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    <?php $emp_query=mysqli_query($conn,"select * from user, employee WHERE returned_by ='Not yet returned' AND employee.admin_id=user.User_id");
+                    <?php $emp_query=mysqli_query($conn,"select * from employee WHERE returned_by ='Not yet returned'");
                         while($row=mysqli_fetch_array($emp_query)){ $id=$row['employeeID']; ?>
 
                         <tr class="del<?php echo $id ?>" style="text-align: center;">
@@ -104,7 +96,6 @@
                             <td><?php echo $row['item_description'] ?></td>
                             <td><?php echo $row['tagNo'] ?></td>
                             <td><?php echo $row['serial_no'] ?></td>
-                            <td><?php echo $row['fullname_user'] ?></td>
                             <td><?php echo $row['returned_by'] ?></td>
                             
                             
@@ -118,6 +109,7 @@
                                     });
                                 </script>
 
+                                <a class="btn btn-success"  id="p<?php echo $id; ?>" data-content="Click here to Edit Item" rel="popover" data-original-title="Edit?"  href="edit_emp.php<?php echo '?id='.$id; ?>"><i class="icon-edit icon-large"></i>&nbsp;Edit</a>&nbsp;
 
                                <a class="btn "  data-toggle="modal" href="#a<?php echo $id; ?>"><i class="icon-plus icon-large" ></i>&nbsp;Return Item</a>
                                 <?php

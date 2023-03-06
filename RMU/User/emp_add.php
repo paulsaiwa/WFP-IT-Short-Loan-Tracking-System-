@@ -25,7 +25,7 @@
                 <h2>Add Details</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success btn-large"  data-original-title="Add Employee?" href="emp_profiles_user.php">  <i class="icon-arrow-left icon-large"></i>&nbsp;Back</a>
+                <a class="btn btn-success btn-large"  data-original-title="Add Employee?" href="home_user.php">  <i class="icon-arrow-left icon-large"></i>&nbsp;Back</a>
                 <script type="text/javascript">
                     jQuery(document).ready(function() {
                         $('#add').popover('show')
@@ -33,7 +33,7 @@
 
                     });
                 </script>
-                <a href="user_account.php" class="btn btn-large"><i class="icon-user icon-large"></i>&nbsp;View User Account</a>
+                
             </div>
 
             <br>
@@ -135,7 +135,7 @@
 
             ") or die(mysqli_error());
          
-                echo('<script>location.href = "add_item_details.php";</script>');
+                echo('<script>location.href = "emp_add.php";</script>');
                 // header('location:emp_profiles.php');
    
     }

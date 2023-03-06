@@ -36,46 +36,46 @@ session_start();
 if (isset($_POST['Login'])){
 
 $UserName=$_POST['UserName'];
-$Password=$_POST['Password'];
+$Password=md5($_POST['Password']);
 
-$login_query=mysqli_query($conn,"select * from user where UserName='$UserName' and Password='$Password' and User_Type='Admin'");
+$login_query=mysqli_query($conn,"select * from user where UserName='$UserName' and Password='$Password' and User_Type='Admin' and status='Activate'");
 $count=mysqli_num_rows($login_query);
 
-$login_query1=mysqli_query($conn,"select * from user where UserName='$UserName' and Password='$Password' and User_Type='User'");
+$login_query1=mysqli_query($conn,"select * from user where UserName='$UserName' and Password='$Password' and User_Type='User' and status='Activate'");
 $count1=mysqli_num_rows($login_query1);
 
 
 
 $row1=mysqli_fetch_array($login_query1);
 if(mysqli_num_rows($login_query1) > 0){
-	$f=$row1['fullname'];
+	$f=$row1['fullname_user'];
 	
 }
 $row=mysqli_fetch_array($login_query);
 if(mysqli_num_rows($login_query) > 0){
-$f=$row['fullname'];
+$f=$row['fullname_user'];
 }
 
 
 
 
 if ($count1 == 1){
-$_SESSION['id']=$row1['User_id'];
+$_SESSION['User_id']=$row1['User_id'];
 $_SESSION['User_Type']=$row1['User_Type'];
 $type=$row1['User_Type'];
 
-mysqli_query($conn,"INSERT INTO history (data,action,date,user)VALUES('$f $l', 'Login', NOW(),'$type')")or die(mysqli_error());
+mysqli_query($conn,"INSERT INTO history (data,action,date,user)VALUES('$f', 'Login', NOW(),'$type')")or die(mysqli_error());
 
 
 echo('<script>location.href = "User/home_user.php";</script>');
 }
 
 if ($count > 0){
-$_SESSION['id']=$row['User_id'];
+$_SESSION['User_id']=$row['User_id'];
 $_SESSION['User_Type']=$row['User_Type'];
 $type=$row['User_Type'];
 
-mysqli_query($conn,"INSERT INTO history (data,action,date,user)VALUES('$f $l', 'Login', NOW(),'$type')")or die(mysqli_error());
+mysqli_query($conn,"INSERT INTO history (data,action,date,user)VALUES('$f', 'Login', NOW(),'$type')")or die(mysqli_error());
 
 
 echo('<script>location.href = "Admin/home.php";</script>');

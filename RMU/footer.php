@@ -12,7 +12,7 @@
     </div>
     <div class="modal-body">
            <div class="alert alert-info">
-  Developer
+  <p style="background-color: ghostwhite;">Copyright &copy; Vincent Saiwa All rights reserved.</p> Developer
     </div>
 <div class="row">
   <div class="span6">
@@ -36,5 +36,5 @@
         </div>
   
   
-        <p>Copyright &copy; Vincent Saiwa All rights reserved.</p>
+        
       </footer>

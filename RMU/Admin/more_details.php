@@ -5,7 +5,7 @@
         <div class="navbar-inner">
             <div class="container">
                 <div class="marg">
-                    <?php include_once 'links.php';?>
+                    <?php //include_once 'links.php';?>
                 </div>
             </div>
         </div>
@@ -17,9 +17,9 @@
 
 
             <div class="alert alert-info">
-                <h2>Edit 
+                <h2>Viewing
                     <?php
-                        $name_query=mysqli_query($conn,"select * from employee ,user  where employee.employeeID='$get_id'")or die(mysqli_error());
+                        $name_query=mysqli_query($conn,"select * from employee where employeeID='$get_id'")or die(mysqli_error());
                         $name_row=mysqli_fetch_array($name_query);
                         echo $name_row['fname'];
                     ?>
@@ -27,7 +27,7 @@
                 </h2>  
 
                 <div class="pull-right">
-                    <a class="btn btn-success btn-large"  data-original-title="Back" href="itemNotReturned.php">  <i class="icon-arrow-left icon-large"></i>&nbsp;Back</a>
+                    <a class="btn btn-success btn-large"  data-original-title="Back?" href="home.php">  <i class="icon-arrow-left icon-large"></i>&nbsp;Back</a>
                     <script type="text/javascript">
                         jQuery(document).ready(function() {
                             $('#add').popover('show')
@@ -47,7 +47,7 @@
 
 
             <ul class="nav nav-tabs" id="myTab">
-                <li class="active"><a href="#home"><font color="#5bc0de">Personal Info</font></a></li>
+                <li class="active"><a href="#home"><font color="#5bc0de">Item loaned Info</font></a></li>
 
             </ul>
             <form method="post" enctype="multipart/form-data">
@@ -57,18 +57,11 @@
 
                         <div class="hero-unit">
                             <?php
-                                include('add_edit_info.php');  
+                                include('show_user.php');  
                             ?>
                         </div>
 
-                    </div>
-
-
-
-
-                    <center>
-                        <button class="btn btn-primary btn-large" name="save"><i class="icon-save icon-large"></i>&nbsp;Save</button>
-                    </center>   
+                    </div> 
 
                 </div>   
             </form>
@@ -114,35 +107,3 @@
         <a href="logout.php" class="btn btn-primary">Yes</a>
     </div>
 </div>
-
-
-<?php
-
-    if (isset($_POST['save'])){
-        $indexNo=$_POST['index_No'];
-        $fname=$_POST['fname'];
-        $phone=$_POST['phone'];
-        $item_description=$_POST['item_description'];
-        $tagNo=$_POST['tagNo'];
-        $returned="Not yet returned";
-        $issueBy=$_POST['admin_id'];
-        $date=$_POST['date_posted'];
-        $serial_no=$_POST['serial_no'];
-        
-        mysqli_query($conn,"update employee set index_No='$indexNo',serial_no='$serial_no', fname='$fname',phone='$phone',
-            item_description='$item_description',tagNo='$tagNo',returned_by='$returned',
-            admin_id='$issueBy',date_posted='$date' where employeeID='$get_id'")or die(mysqli_error());
-        //header('location:emp_profiles.php');
-?>
-
-<script>
-                 function pageRedirect() {
-                    window.location.replace("itemNotReturned.php");
-    }      
-                        setTimeout("pageRedirect()", 1000);
-                </script>
-<?php
-    }
-
-
-?>

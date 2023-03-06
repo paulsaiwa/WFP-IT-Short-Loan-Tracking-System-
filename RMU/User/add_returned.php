@@ -1,6 +1,6 @@
 <?php include('dbcon.php'); include('session.php');include('header.php'); 
     $get_id=$_GET['id'];
-        $edit_query=mysqli_query($conn,"select * from user where User_id='$id_session'")or die(mysqli_error());
+        //$edit_query=mysqli_query($conn,"select * from user where User_id='$id_session'")or die(mysqli_error());
                                 
         
 ?>
@@ -23,6 +23,10 @@
 
             <div class="alert alert-info">
                 <?php
+                    $edit_query=mysqli_query($conn,"select * from user where User_id='$id_session'")or die(mysqli_error());
+                    $row=mysqli_fetch_array($edit_query);
+                    $system_user=$row['fullname_user'];
+
                     $leave_query=mysqli_query($conn,"select * from employee where employeeID='$get_id'")or die(mysqli_errno());
                     $row=mysqli_fetch_array($leave_query);
                     $member_id=$row['employeeID'];
@@ -110,8 +114,9 @@
             if (isset($_POST['save'])){
 
 
-                $admin_id=$id_session;
+                $admin_id=$system_user;
                 $emp_id=$get_id;
+                $id=$id_session;
                 $comment=$_POST['comment'];
                 $item_condition=$_POST['item_condition'];
                 $date1 = time();
@@ -129,8 +134,8 @@
                             item_description='$item_description',tagNo='$tagNo',returned_by='$returned',
                             admin_id='$issueBy',date_posted='$date' where employeeID='$get_id'")or die(mysqli_error());
 
-                mysqli_query($conn,"insert into returned_by (`item_condition`,`comment`,`employeeID`,`witness_id`, `date_returned`,`returned`) 
-                values('$item_condition','$comment','$emp_id', '$admin_id','$date1','$returned1')")or die(mysqli_error());
+                mysqli_query($conn,"insert into returned_by (`item_condition`,`comment`,`employeeID`,`witness_id`,`User_id`, `date_returned`,`returned`) 
+                values('$item_condition','$comment','$emp_id', '$admin_id','$id','$date1','$returned1')")or die(mysqli_error());
 
                 ?>
                 <script>
